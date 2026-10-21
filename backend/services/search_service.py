@@ -14,7 +14,8 @@ from services.embedding_service import EmbeddingService
 from services.yolo_service import YoloService
 
 
-COLLECTION_NAME = "video_objects"
+# COLLECTION_NAME = "video_objects"
+COLLECTION_NAME = "video_objects_siglip"
 QDRANT_URL = "http://localhost:6333"
 BASE_DIR = Path(__file__).resolve().parent.parent
 

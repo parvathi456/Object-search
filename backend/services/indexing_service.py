@@ -21,13 +21,18 @@ from services.embedding_service import EmbeddingService
 BASE_DIR = Path(__file__).resolve().parent.parent
 THUMBNAIL_DIR = BASE_DIR / "thumbnails"
 
-COLLECTION_NAME = "video_objects"
+# COLLECTION_NAME = "video_objects"
+COLLECTION_NAME = "video_objects_siglip"
 QDRANT_URL = "http://localhost:6333"
 
 # Load these once per worker process.
 yolo_service = YoloService()
 embedding_service = EmbeddingService()
-qdrant = QdrantClient(url=QDRANT_URL)
+# qdrant = QdrantClient(url=QDRANT_URL)
+qdrant = QdrantClient(
+    url="http://localhost:6333",
+    timeout=120,
+)
 
 
 def ensure_collection():
@@ -35,7 +40,7 @@ def ensure_collection():
         qdrant.create_collection(
             collection_name=COLLECTION_NAME,
             vectors_config=VectorParams(
-                size=embedding_service.embedding_dimension,
+                size=embedding_service.embedding_dim,
                 distance=Distance.COSINE,
             ),
         )

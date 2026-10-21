@@ -18,3 +18,9 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+backend/
+thumbnails/
+uploads/
+
+object-search.zip
